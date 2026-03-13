@@ -63,7 +63,7 @@
         #svg-text { z-index: 3; pointer-events: none; }
 
         .major { font-size: 6.5px; font-weight: 700; fill: #000000; text-anchor: middle; dominant-baseline: central; letter-spacing: -0.2px; }
-        .minor { font-size: 4.8px; font-weight: 600; fill: #000000; text-anchor: middle; dominant-baseline: central; }
+        .minor { font-size: 4px; font-weight: 700; fill: #000000; text-anchor: middle; dominant-baseline: central; }
         .center-brand { font-size: 4px; font-weight: 800; fill: var(--line); text-anchor: middle; dominant-baseline: central; letter-spacing: 0.5px; opacity: 0.8; }
         
         .monetization-hub { width: 100%; max-width: 450px; padding: 0 20px 4vh; margin-top: 20px; z-index: 40; display: flex; flex-direction: column; gap: 10px; box-sizing: border-box; }
@@ -274,7 +274,7 @@
     const root = document.documentElement;
     
     const majors = ['C', 'G', 'D', 'A', 'E', 'H', 'G♭', 'D♭', 'A♭', 'E♭', 'B', 'F'];
-    const minors = ['A', 'E', 'H', 'F♯', 'C♯', 'G♯', 'D#', 'B', 'F', 'C', 'G', 'D'];
+    const minors = ['Am', 'Em', 'Hm', 'F♯m', 'C♯m', 'G♯m', 'D#m', 'Bm', 'Fm', 'Cm', 'Gm', 'Dm'];
     
     const c0 = '#A2E0B2'; const c1 = '#34C759'; const c2 = '#FFCC00'; const c3 = '#FF9500'; const c4 = '#FF3B30'; const c5 = '#5AC8FA'; const c6 = '#FF2D78';
     
@@ -312,7 +312,7 @@
     const systemInfo = {
        rimsky: {
             title: "Римский-Корсаков — СПб — 1886",
-            desc: "К I степени сродства данного строя относятся 6 строев, тонические трезвучия которых заключаются в данном строе. \n\nКо второй степени родства относятся тональности, тонические трезвучия которых могут быть построены в звукорядах тональностей I степени родства к исходной, но не встречаются в ней. \n\nК третьей степени родства относятся тональности, тонические трезвучия которых входят в звукоряд тональностей II степени родства, но не встречаются в звукорядах основной тональности и тональностей I степени родства.",
+            desc: "К I степени родства данного строя относятся 6 строев, тонические трезвучия которых заключаются в данном строе. \n\nКо второй степени родства относятся тональности, тонические трезвучия которых могут быть построены в звукорядах тональностей I степени родства к исходной, но не встречаются в ней. \n\nК третьей степени родства относятся тональности, тонические трезвучия которых входят в звукоряд тональностей II степени родства, но не встречаются в звукорядах основной тональности и тональностей I степени родства.",
             legend: [
                 {c: c0, t: "0 степень"},
                 {c: c1, t: "I ст."},
