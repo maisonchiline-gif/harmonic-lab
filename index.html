@@ -22,7 +22,7 @@
             min-height: 100vh; overflow-x: hidden; user-select: none; -webkit-user-select: none;
         }
 
-        .header { width: 100%; display: flex; justify-content: center; padding: 4vh 0; z-index: 40; }
+        .header { width: 100%; display: flex; justify-content: center; padding: 1vh 0; z-index: 40; }
 
         .top-controls { display: flex; gap: 10px; align-items: center; }
 
@@ -73,18 +73,18 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center;
     
             margin-top: 15px;    /* Расстояние до легенды сверху */
-            margin-bottom: 15px; /* Расстояние до кнопок Telegram/Boosty снизу */
+            margin-bottom: 4px; /* Расстояние до кнопок Telegram/Boosty снизу */
         }
         select {
             width: 100%; height: 100%; appearance: none; -webkit-appearance: none; background: transparent; border: none;
             font-family: var(--font-stack); font-size: 13px; font-weight: 600; color: var(--text);
             padding: 0 30px 0 16px; cursor: pointer; outline: none;
         }
-        .ui-panel::after { content: "▼"; font-size: 9px; color: var(--dim); position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+        .ui-panel::after { content: "▼"; font-size: 12px; color: var(--dim); position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
 
         /* Стили легенды */
         .legend-container {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding: 4px 2px; margin-bottom: 4px;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 11px; padding: 4px 2px; margin-bottom: 4px;
         }
         .legend-item { display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 650; color: var(--text); }
         .legend-dot { width: 15px; height: 15px; border-radius: 3px; flex-shrink: 0; }
@@ -112,9 +112,9 @@
             box-shadow: 0 4px 15px rgba(216, 216, 216, 0.513);
             margin-top: 4px;
         }
-        .ozon-banner:active { transform: scale(0.97); }
+        .ozon-banner:active { transform: scale(1); }
         .ozon-banner .ozon-title { color: #212020; }
-        .ozon-title { font-size: 15px; font-weight: 800; margin-bottom: 6px; letter-spacing: 0.2px; }
+        .ozon-title { font-size: 15px; font-weight: 800; letter-spacing: 0.2px; }
         .ozon-ozon { color: #005bff; }
         .ozon-subtitle { font-size: 12px; font-weight: 600; line-height: 1.5; }
     
@@ -156,6 +156,14 @@
         .modal-text { font-size: 13px; line-height: 1.6; color: #333333; margin: 0; font-weight: 500; }
         .modal-list { margin: 8px 0 0 0; padding-left: 20px; font-size: 13px; line-height: 1.6; font-weight: 500; color: #333; }
         .modal-list li { margin-bottom: 4px; }
+        .products-arrow {
+            display: flex; justify-content: center; width: 100%;
+            margin-top: 2px; margin-bottom: -4px; /* Сокращаем расстояние до карточек */
+        }
+        .products-arrow svg {
+            width: 20px; height: 20px; fill: none; stroke: var(--dim);
+            stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.5;
+        }
     </style>
 </head>
 <body>
@@ -203,11 +211,16 @@
             <a href="https://boosty.to/maison_chiline/posts/5d007c1d-b248-4127-95b5-f704abc09229?share=post_link" target="_blank" rel="noopener noreferrer" class="btn-social" title="Boosty"> Boosty</a>
         </div>
         
-        <a href="https://ozon.ru/product/notnaya-tetrad-a4-48-listov-ot-chiline-1750900085/" target="_blank" rel="noopener noreferrer" class="ozon-banner">
+        <a href="https://www.ozon.ru/seller/chiline/" target="_blank" rel="noopener noreferrer" class="ozon-banner">
             <div class="ozon-title"> Наша музыкальная канцелярия на <span class="ozon-ozon">OZON</span></div>
         </a>
+</a>
+        
+        <div class="products-arrow">
+            <svg viewBox="0 6 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
 
-      <div class="products-grid">
+        <div class="products-grid">
             <a href="https://www.ozon.ru/product/notnyy-bloknot-a6-32-lista-ot-chiline-belyy-1654814623/" target="_blank" rel="noopener noreferrer" class="product-card">
                 <div class="product-image">
                     <img src="https://ir.ozone.ru/s3/multimedia-1-8/wc1000/7622148572.jpg" alt="Блокноты A6" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
@@ -478,7 +491,17 @@
         if (e.key === 'ArrowLeft' || key === 'a' || key === 'ф' || e.key === '4') rotateWheel(-1);
         else if (e.key === 'ArrowRight' || key === 'd' || key === 'в' || e.key === '6') rotateWheel(1);
     });
-
+// Приветственное вращение при загрузке
+    setTimeout(() => {
+        svgColor.style.transition = 'transform 1.5s cubic-bezier(0.25, 1, 0.35, 1)';
+        colorAngle = -360; 
+        root.style.setProperty('--rot-color', `${colorAngle}deg`);
+        
+        // Возврат к стандартной скорости после завершения
+        setTimeout(() => {
+            svgColor.style.transition = 'transform 1.0s cubic-bezier(0.25, 1, 0.35, 1)';
+        }, 1500);
+    }, 150);
     initSvg();
     updateLegend();
 </script>
