@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Harmonic Lab | CHILINE</title>
+    <title>Квартоквинтовый круг и степени родства тональностей | CHILINE</title>
+    <meta name="description" content="Интерактивный квартоквинтовый круг. Визуализация степеней родства тональностей по системам Римского-Корсакова, Способина, Катуара, Тюлина и Шилина.">
+    <meta name="keywords" content="квартоквинтовый круг, степени родства тональностей, теория музыки, гармония, Римский-Корсаков, Способин">
     <style>
+        .seo-article { max-width: 600px; padding: 40px 20px; font-size: 12px; color: var(--dim); line-height: 1.5; text-align: justify; }
+        .seo-article h1 { font-size: 14px; color: var(--text); }
+        .seo-article h2 { font-size: 13px; color: var(--text); margin-top: 15px; }
         :root {
             --bg: #f9f9fb; --line: #1c1c1e; --text: #000000; --dim: #8e8e93;
             --brand: #007aff; --ozon: #005bff; --boosty: #f15f2c;
@@ -38,9 +43,6 @@
 
         .workspace { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; flex-grow: 1; min-height: 400px; }
 
-        .tap-zones { position: absolute; width: 100%; height: 100%; display: flex; z-index: 5; }
-        .tap-zone { flex: 1; cursor: pointer; }
-
         .stage-wrapper {
             position: relative; width: 380px; height: 380px; background: #ffffff; border-radius: 50%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.06), 0 2px 10px rgba(0,0,0,0.02);
@@ -57,7 +59,8 @@
         .stage { position: absolute; width: 340px; height: 340px; display: flex; align-items: center; justify-content: center; }
         svg { position: absolute; will-change: transform; transition: transform 0.6s cubic-bezier(0.25, 1, 0.35, 1); }
         #svg-color { z-index: 1; transform: rotate(var(--rot-color)); }
-        #svg-grid { z-index: 2; } #svg-text { z-index: 3; }
+        #svg-grid { z-index: 2; pointer-events: auto; } 
+        #svg-text { z-index: 3; pointer-events: none; }
 
         .major { font-size: 6.5px; font-weight: 700; fill: #000000; text-anchor: middle; dominant-baseline: central; letter-spacing: -0.2px; }
         .minor { font-size: 4.8px; font-weight: 600; fill: #000000; text-anchor: middle; dominant-baseline: central; }
@@ -168,11 +171,6 @@
     </div>
 
     <div class="workspace">
-        <div class="tap-zones" id="tap-zones">
-            <div class="tap-zone" data-dir="-1"></div>
-            <div class="tap-zone" data-dir="1"></div>
-        </div>
-
         <div class="stage-wrapper">
             <svg class="arrow-icon arrow-left" id="arr-left"><path d="M15 18l-6-6 6-6"/></svg>
             <svg class="arrow-icon arrow-right" id="arr-right"><path d="M9 18l6-6-6-6"/></svg>
@@ -190,23 +188,23 @@
         
         <div class="ui-panel">
             <select id="system-selector" onchange="changeSystem(this.value)">
-                <option value="rimsky">Римский-Корсаков</option>
-                <option value="tylin">Тюлин</option>
-                <option value="shilin">Шилин</option>
-                <option value="catoire">Катуар</option>
-                <option value="brigada">"Бригада"</option>
-                <option value="sposobin_I">Способин I</option>
-                <option value="sposobin_II">Способин II</option>
+                <option value="rimsky">Римский-Корсаков — СПБ — 1886</option>
+                <option value="catoire">Катуар — МСК — 1924</option>
+                <option value="brigada">"Бригада" — МСК — 1934</option>
+                <option value="tylin">Тюлин — СПБ — 1937</option>
+                <option value="sposobin_I">Способин I — МСК — 1969</option>
+                <option value="sposobin_II">Способин II — МСК — 1969</option>
+                <option value="shilin">Шилин — НСК — 2025</option>
             </select>
         </div>
 
         <div class="social-row">
             <a href="https://t.me/chiline" target="_blank" rel="noopener noreferrer" class="btn-social" title="Telegram"> Telegram</a>
-            <a href="https://boosty.to/maison_chiline" target="_blank" rel="noopener noreferrer" class="btn-social" title="Boosty"> Boosty</a>
+            <a href="https://boosty.to/maison_chiline/posts/5d007c1d-b248-4127-95b5-f704abc09229?share=post_link" target="_blank" rel="noopener noreferrer" class="btn-social" title="Boosty"> Boosty</a>
         </div>
         
         <a href="https://ozon.ru/product/notnaya-tetrad-a4-48-listov-ot-chiline-1750900085/" target="_blank" rel="noopener noreferrer" class="ozon-banner">
-            <div class="ozon-title">Наша музыкальная канцелярия на <span class="ozon-ozon">OZON</span></div>
+            <div class="ozon-title"> Наша музыкальная канцелярия на <span class="ozon-ozon">OZON</span></div>
         </a>
 
       <div class="products-grid">
@@ -241,7 +239,12 @@
             </a>
         </div>
     </div>
-
+    <article class="seo-article">
+        <h1>Квартоквинтовый круг и интерактивная визуализация степеней родства тональностей</h1>
+        <p>Harmonic Lab — это профессиональный инструмент композитора для изучения теории музыки. Квартоквинтовый круг позволяет мгновенно определять родственные тональности.</p>
+        <h2>Системы гармонического родства</h2>
+        <p>В нашем приложении представлены классификации: Римского-Корсакова, функциональная теория Тюлина и Катуара, школа "Бригада" и хроматическая система Способина и Шилина. Интерактивный квинтовый круг помогает музыкантам визуализировать общие аккорды и строить модуляции.</p>
+    </article>
     <div class="modal-overlay" id="info-modal" onclick="closeInfo(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -272,8 +275,8 @@
             min: { out: [c1, c1, c2, c0, c1, c2, c4, c4, c4, c4, c2, c1], in: [c0, c1, c2, c2, c2, c2, c4, c2, c2, c2, c2, c1] }
         },
         shilin: { 
-            maj: { out: [c0, c1, c2, c2, c1, c2, c4, c2, c2, c2, c2, c1], in: [c0, c1, c2, c2, c2, c2, c4, c2, c1, c2, c2, c1] },
-            min: { out: [c0, c1, c2, c2, c1, c2, c4, c2, c2, c2, c2, c1], in: [c0, c1, c2, c2, c2, c2, c4, c2, c1, c2, c2, c1] }
+            maj: { out: [c0, c1, c2, c2, c1, c2, c4, c3, c3, c3, c2, c1], in: [c1, c1, c2, c3, c3, c3, c4, c2, c1, c2, c2, c1] },
+            min: { out: [c1, c1, c2, c2, c1, c2, c4, c3, c3, c3, c2, c1], in: [c0, c1, c2, c3, c3, c3, c4, c2, c1, c2, c2, c1] }
         },
         catoire: { 
             maj: { out: [c0, c1, c2, c4, c4, c4, c4, c4, c4, c4, c2, c1], in: [c1, c1, c2, c4, c4, c4, c4, c4, c4, c4, c2, c1] },
@@ -294,13 +297,80 @@
     };
 
     const systemInfo = {
-        rimsky: { title: "Римский-Корсаков", desc: "Диатоническое сродство аккордов.", legend: [{c: c0, t: "0 степень"}, {c: c1, t: "I ст."}, {c: c2, t: "II ст."}, {c: c4, t: "III ст."}], list: ["I ст. — 1 знак разницы", "II ст. — 2 знака", "III ст. — дальние"] },
-        tylin: { title: "Тюлин", desc: "Функциональная концепция Тюлина.", legend: [{c: c0, t: "0 степень"}, {c: c1, t: "I ст."}, {c: c2, t: "II ст."}, {c: c4, t: "III ст."}], list: ["Пункт 1", "Пункт 2"] },
-        shilin: { title: "Шилин", desc: "Авторская классификация Шилина.", legend: [{c: c0, t: "0 степень"}, {c: c1, t: "I ст."}, {c: c2, t: "II ст."}, {c: c4, t: "III ст."}], list: ["Критерий 1", "Критерий 2"] },
-        catoire: { title: "Катуар", desc: "Функциональная теория Римана-Катуара.", legend: [{c: c0, t: "0 степень"}, {c: c1, t: "I ст."}, {c: c2, t: "II ст."}, {c: c4, t: "III ст."}], list: ["Учет мажоро-минора", "Многозначность"] },
-        brigada: { title: "Бригада", desc: "Московская школа.", legend: [{c: c0, t: "0 степень"}, {c: c1, t: "I ст."}, {c: c2, t: "II ст."}, {c: c3, t: "III ст."}, {c: c4, t: "IV ст."}], list: ["I ст. — 6 аккордов", "II ст. — 4 аккорда", "III ст. — остальные"] },
-        sposobin_I: { title: "Способин I", desc: "Система I по Способину.", legend: [{c: c0, t: "0 степень"}, {c: c1, t: "I ст."}, {c: c2, t: "II ст."}, {c: c4, t: "III ст."}], list: ["Пункт 1", "Пункт 2"] },
-        sposobin_II: { title: "Способин II", desc: "Хроматическое родство.", legend: [{c: c0, t: "0 степень"}, {c: c1, t: "I ст."}, {c: c3, t: "II ст."}, {c: c2, t: "III ст."}, {c: c4, t: "IV ст."}, {c: c5, t: "V ст."}, {c: c6, t: "VI ст."}], list: ["Уровень 1", "Уровень 2"] }
+        rimsky: {
+            title: "Римский-Корсаков — СПБ — 1886",
+            desc: "К I степени сродства данного строя относятся 6 строев, тонические трезвучия которых заключаются в данном строе. \n\nКо второй степени родства относятся тональности, тонические трезвучия которых могут быть построены в звукорядах тональностей I степени родства к исходной, но не встречаются в ней. \n\nК третьей степени родства относятся тональности, тонические трезвучия которых входят в звукоряд тональностей II степени родства, но не встречаются в звукорядах основной тональности и тональностей I степени родства.",
+            legend: [
+                {c: c0, t: "0 степень"},
+                {c: c1, t: "I ст."},
+                {c: c2, t: "II ст."},
+                {c: c4, t: "III ст."}],
+            list: [] },
+        
+        tylin: {
+            title: "Тюлин — СПБ — 1937",
+            desc: "В отличии от Римского-Корсакова, Тюлин считает, что модуляция в одноименный мажор или в одноименный минор — это модулция ладовая, а не тональная (так как тоники совпадают, а меняеться только лад). В следствии чего в нулевой степени родства оказывается одноименный мажор или одноименный минор в зависимости от данной тоналности.",
+            legend: [
+                {c: c0, t: "0 степень"},
+                {c: c1, t: "I ст."},
+                {c: c2, t: "II ст."},
+                {c: c4, t: "III ст."}],
+            list: [] },
+        
+        catoire: {
+            title: "Катуар — МСК — 1924",
+            desc: "В отличии от Римского-Корсакова, Катуар следует принципу — чем больше общих аккордов между тональностями, тем ближе гармоническое родство. И берёт за основу лады натурального мажора и натурального минора, не прибегает к гармоническим ладам.",
+            legend: [
+                {c: c0, t: "0 степень"},
+                {c: c1, t: "I ст."},
+                {c: c2, t: "II ст."},
+                {c: c4, t: "III ст."}],
+            list: ["I — 6 и 4 общих аккорда", "II — 2 общих аккорда", "III — 0 общих аккордов" ] },
+
+        shilin: {
+            title: "Шилин — НСК — 2025",
+            desc: 'Шилин, так же как и "Бригада" взял за основу принцип Катуара — "чем больше общих аккордов между тональностями, тем ближе гармоническое родство", но в отличии от последнего, взял за основу переменную ладотональность, в следствии чего в первую степень родства вошли все аакорды натурального и гармонического лада, как даной, так и паралельной тональности',
+            legend: [
+                {c: c0, t: "0 степень"},
+                {c: c1, t: "I ст."},
+                {c: c2, t: "II ст."},
+                {c: c3, t: "III ст."},
+                {c: c4, t: "IV ст."}],
+            list: ["I — 6 и 4 общих аккорда", "II — 2 общих аккорда", "III — 1 общий аккорд", "IV — 0 общих аккордов"] },
+        
+        brigada: {
+            title: "Бригада — МСК — 1934",
+            desc: 'В отличии от Катуара, "Бригада" добавила в первую степень родсвта аккорды гармонических ладов. Тем самым обьеденив системы Римского-Корсакова и Катуара: от Катура взяв принцип "чем больше общих аккордов между тональностями, тем ближе гармоническое родство", я за основу взяв не только натуральные лады, а ещё и гармонические, так же, как это сделал Римский-Корсаков',
+            legend: [
+                {c: c0, t: "0 степень"},
+                {c: c1, t: "I ст."},
+                {c: c2, t: "II ст."},
+                {c: c3, t: "III ст."},
+                {c: c4, t: "IV ст."}],
+            list: ["I — 6 и 4 общих аккорда", "II — 2 общих аккорда", "III — 1 общий аккорд", "IV — 0 общих аккордов"] },
+        
+        sposobin_I: {
+            title: "Способин I — МСК — 1969",
+            desc: "В отличии от Римского-Корсакова, принцип первой системы тонального родства Способина основывается на объединении тональностей общей тоникой или её отсутствии и включает три группы:",
+            legend: [
+                {c: c0, t: "0 степень"},
+                {c: c1, t: "I ст."},
+                {c: c2, t: "II ст."},
+                {c: c4, t: "III ст."}],
+            list: ["I (диатоническое родство) — 5 наиболее близких тональностей, чьи трезвучия входят в натуральный лад.", "II (мажоро-минорное родство) — 6 тональностей, объединенных одноименной тоникой, среди которых особо выделяются минорная субдоминанта для мажора и мажорная доминанта для минора.", "III (хроматическое родство) — остальные 18 тональностей без объединяющей тоники, формирующиеся через терцовые отношения, низкую II ступень или замену трезвучий предыдущих групп одноименными"] },
+
+        sposobin_II: {
+            title: "Способин II — МСК — 1969",
+            desc: "Вторая система Способина, в отличии от первой, не имеет единого принципа построения и включает в себя 6 групп:",
+            legend: [
+                {c: c0, t: "0 степень"},
+                {c: c1, t: "I ст."},
+                {c: c3, t: "II ст."},
+                {c: c2, t: "III ст."},
+                {c: c4, t: "IV ст."},
+                {c: c5, t: "V ст."},
+                {c: c6, t: "VI ст."}],
+            list: ["I (диатоническое) — 5 тональностей, чьи трезвучия входят в натуральный лад.", " II (полудиатоническое) — минорная субдоминанта для мажора и мажорная доминанта для минора.", " III (одноименное мажоро-минорное) — одноименная тональность и её диатоническое окружение.", " IV (параллельное мажоро-минорное) — III мажорная ступень к мажору и VI минорная к минору.", " V (полухроматическое) — мажорная тональность «неаполитанской» низкой II ступени.", " VI (собственно хроматическое) — все остальные тональности, образуемые через доминантовые, субдоминантовые связи к предыдущим или через одноименные подмены."] }
     };
 
     let colorAngle = 0; let currentMode = 'maj'; let currentSystem = 'rimsky';
@@ -317,6 +387,7 @@
             const pathM = (r1, r2) => `M ${50 + r1 * Math.cos(start)} ${50 + r1 * Math.sin(start)} L ${50 + r2 * Math.cos(start)} ${50 + r2 * Math.sin(start)} A ${r2} ${r2} 0 0 1 ${50 + r2 * Math.cos(end)} ${50 + r2 * Math.sin(end)} L ${50 + r1 * Math.cos(end)} ${50 + r1 * Math.sin(end)} A ${r1} ${r1} 0 0 0 ${50 + r1 * Math.cos(start)} ${50 + r1 * Math.sin(start)} Z`;
             colorHtml += `<path class="c-maj" d="${pathM(28, 48)}" fill-opacity="0.8"/>`;
             colorHtml += `<path class="c-min" d="${pathM(14, 28)}" fill-opacity="0.8"/>`;
+            gridHtml += `<path class="click-slice" d="${pathM(14, 48)}" fill="transparent" style="cursor: pointer;" data-idx="${i}"/>`;
         }
         textHtml += `<text x="50" y="50" class="center-brand">CHILINE</text>`;
         svgGrid.innerHTML = gridHtml; svgText.innerHTML = textHtml; svgColor.innerHTML = colorHtml;
@@ -379,14 +450,27 @@
 
     function rotateWheel(direction) {
         colorAngle += direction * 30; root.style.setProperty('--rot-color', `${colorAngle}deg`); playSnap();
-        const arr = direction === -1 ? document.getElementById('arr-left') : document.getElementById('arr-right');
-        arr.style.transform = 'translateY(-50%) scale(0.8)'; arr.style.opacity = '1';
-        setTimeout(() => { arr.style.transform = 'translateY(-50%) scale(1)'; arr.style.opacity = '0.5'; }, 150);
+        const arr = direction < 0 ? document.getElementById('arr-left') : document.getElementById('arr-right');
+        if(arr) {
+            arr.style.transform = 'translateY(-50%) scale(0.8)'; arr.style.opacity = '1';
+            setTimeout(() => { arr.style.transform = 'translateY(-50%) scale(1)'; arr.style.opacity = '0.5'; }, 150);
+        }
     }
 
-    document.getElementById('tap-zones').addEventListener('click', (e) => {
-        const zone = e.target.closest('.tap-zone'); if (!zone) return;
-        rotateWheel(parseInt(zone.dataset.dir));
+    document.getElementById('svg-grid').addEventListener('click', (e) => {
+        const slice = e.target.closest('.click-slice'); 
+        if (!slice) return;
+        
+        const targetIdx = parseInt(slice.dataset.idx);
+        
+        let currentIdx = Math.round(colorAngle / 30) % 12;
+        if (currentIdx < 0) currentIdx += 12;
+        
+        let diff = targetIdx - currentIdx;
+        if (diff > 6) diff -= 12;  
+        if (diff < -6) diff += 12; 
+        
+        if (diff !== 0) rotateWheel(diff);
     });
 
     document.addEventListener('keydown', (e) => {
