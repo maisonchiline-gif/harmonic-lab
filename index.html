@@ -40,7 +40,12 @@
         }
         .btn-info-top:active { transform: scale(0.95); }
         .icon-info { font-style: italic; font-weight: 700; font-size: 18px; font-family: serif; color: var(--dim); }
-
+        .icon-lang { 
+    font-weight: 700; 
+    font-size: 14px; 
+    font-family: var(--font-stack); 
+    color: var(--dim); 
+}
         .workspace { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; flex-grow: 1; min-height: 400px; }
 
         .stage-wrapper {
@@ -169,15 +174,19 @@
 </head>
 <body>
 
-    <div class="header">
-        <div class="top-controls">
-            <div class="mode-toggle">
-                <button id="btn-maj" class="active" onclick="setMode('maj')">Мажор</button>
-                <button id="btn-min" onclick="setMode('min')">Минор</button>
-            </div>
-            <button class="btn-info-top" onclick="openInfo()" title="Справка"><span class="icon-info">i</span></button>
+<div class="header">
+    <div class="top-controls">
+        <button class="btn-info-top" id="btn-lang" onclick="toggleLang()" title="Сменить язык">
+            <span class="icon-lang">RU</span>
+        </button>
+
+        <div class="mode-toggle">
+            <button id="btn-maj" class="active" onclick="setMode('maj')">Мажор</button>
+            <button id="btn-min" onclick="setMode('min')">Минор</button>
         </div>
+        <button class="btn-info-top" onclick="openInfo()" title="Справка"><span class="icon-info">i</span></button>
     </div>
+</div>
 
     <div class="workspace">
         <div class="stage-wrapper">
@@ -375,7 +384,30 @@
 
     let colorAngle = 0; let currentMode = 'maj'; let currentSystem = 'shilin';
     let domPathsMaj = [], domPathsMin = [];
+let currentLang = 'ru';
 
+function toggleLang() {
+    // Переключаем язык
+    currentLang = currentLang === 'ru' ? 'en' : 'ru';
+    
+    // Обновляем текст внутри кнопки
+    document.getElementById('btn-lang').querySelector('.icon-lang').innerText = currentLang.toUpperCase();
+    
+    // Запускаем функцию перевода интерфейса
+    updateInterfaceLanguage();
+}
+
+function updateInterfaceLanguage() {
+    if (currentLang === 'en') {
+        document.getElementById('btn-maj').innerText = 'Major';
+        document.getElementById('btn-min').innerText = 'Minor';
+        // Здесь нужно будет добавить обновление остальных текстов (модальное окно, селектор, легенда)
+    } else {
+        document.getElementById('btn-maj').innerText = 'Мажор';
+        document.getElementById('btn-min').innerText = 'Минор';
+        // Возврат на русский
+    }
+}
     function initSvg() {
         const ringWidth = 0.25; let gridHtml = '', textHtml = '', colorHtml = '';
         [48, 28, 14].forEach(r => gridHtml += `<circle cx="50" cy="50" r="${r}" fill="none" stroke="var(--line)" stroke-width="${ringWidth}"/>`);
